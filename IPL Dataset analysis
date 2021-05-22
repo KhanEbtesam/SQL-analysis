@@ -1,0 +1,57 @@
+use IPL
+--count total records in dataset.
+select count (*) from  [dbo].[matches]
+
+-- find is there any null value in table 
+select * from [dbo].[matches]
+where ID is null or 
+		season is null or
+		city is null or
+		date is null or
+		Team1 is null or 
+		Team2 is null or
+		tosswin is null or
+		TossDecition is null or
+		Result is null or 
+		Winner is null or 
+		WinByRun is null or 
+		WinByWicket is null or
+		PlayerOfMatch is null or 
+		Venue is null or 
+		Umpire1 is null or 
+		Umpire2 is null
+
+--total matches played by RCB 
+select * from matches
+where team1 ='royal challengers bangalore'
+union
+select * from matches
+where team2= 'royal challengers bangalore'
+	
+-- matches win by RCB 
+select* from matches
+where winner='Royal Challengers Bangalore'
+
+-- mathces win by RCB in homeground
+select *
+from matches
+where city='bangalore' and winner='Royal Challengers Bangalore'
+
+-- matches where captian virat kohli is man of match.
+select *
+from matches
+where PlayerOfMatch = 'v kohli'
+
+-- matches where virat kohli  is man of the match in homeground.
+select *
+from matches
+where PlayerOfMatch = 'v kohli' and city='bangalore'
+
+-- Matches win by RCB when they choose to batting first
+select * from matches 
+where TossDecition='bat' and team2= 'royal challengers bangalore' and 
+team1 ='royal challengers bangalore'
+
+-- Matches win by RCB where run diffrence is more than 30 run
+select* from matches where WinByRun >30
+and Winner='royal challengers bangalore'
